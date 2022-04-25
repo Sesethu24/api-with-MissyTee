@@ -1,3 +1,4 @@
+![node workflow](https://github.com/Sesethu24/api-with-psql-workshop/actions/workflows/test.api.js.yml/badge.svg)
 # Build an API using PosgreSQL and pg-promise
 
 This workshop builds on the [psql refresher workshop]() you should use SQL that you wrote in that workshop to create the API endpoints needed to make the Unit Tests pass. 
