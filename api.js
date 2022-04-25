@@ -100,7 +100,7 @@ module.exports = function (app, db) {
 	});
 
 	app.get('/api/garments/grouped', async function (req, res) {
-		const result = await db.many(`select count(*), gender FROM garment GROUP BY gender`);
+		const result = await db.many(`select count(*), gender FROM garment GROUP BY gender ORDER BY gender desc `);
 		
 		res.json({
 			data: result
