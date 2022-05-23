@@ -3,21 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="style.css">
     <title>Alpine JS</title>
 </head>
 <body>
     <h2>Missy Tee's clothing shop</h2>
-	<div x-data="garments" x-init=""  >
-		<button @click="show">Load garments</button>
+	<div class="filter" >
+		<h2>Filter</h2>
+		<div class="genders" >
+			<label>
+				<input type="radio" name="gender" value="All"> All
+			</label>
+			
+			<label>
+				<input type="radio" name="gender" value="Male"> Male
+			</label>
 
-    		<ul>
+			<label>
+				<input type="radio" name="gender" value="Female"> Female
+			</label>
+			<label>
+				<input type="radio" name="gender" value="Unisex"> Unisex
+			</label>
+		</div>
+		<div class="seasons" >
+			
+			<label >
+				<input type="radio" name="season" value="All"> All
+			</label>
+			<label>
+				<input type="radio" name="season" value="Summer"> Summer
+			</label>
+			<label>
+				<input type="radio" name="season" value="Winter"> Winter
+			</label>
+			<label>
+				<input type="radio" name="season" value="All Seasons"> All seasons
+			</label>
+		</div>
+		<div>
+			Filter by price range: 
+			<input type="range" name="priceRange" max="1000" step="50" class="priceRange" value="0"  >
+			R<span class="showPriceRange" >0</span>.00
+		</div>
+	</div>
+
+	<!-- <div class="message hidden" >
+
+	</div> -->
+	<!-- <div class="message2 hidden" >
+
+	</div> -->
+	<!-- <div class="addGarment" >
+		
+		<div class="add button mt1 " >
+			<a href="">Add garmet</a>
+		</div> -->
+
+		<!-- <div class="add garment hidden">
+			<h2>Add garment</h2>
+			<img src="/public/images/{{img}}" alt="">
+				
+				<div class="field" >
+					<label for="">Description</label>
+					<input type="text" name="description" class="description" >
+				</div>
+				<div class="field" >
+					<label for="">Image</label>
+					<input type="text" name="img" class="img"  >
+				</div>
+				<div class="field">
+					<label for="">Price</label>
+					<input type="number" name="price" step = "0.01" class="price" >
+				</div>
+				<div class="field">
+					<label for="">Gender</label>
+					<div>
+						<input type="text" name="gender" class="gender" >
+					</div>
+				</div>
+				<div class="field">
+					<label for="">Season</label>
+					<div>
+						<input type="text" name="season" class="season" >
+					</div>
+				</div>
+				<div class="mt1">
+					<input type="button" name="action" value="Add" class="addGarmentBtn"  >
+					<input type="button" name="action" value="Hide" class="hideAddGarmetBtn" >
+				</div>
+		</div> -->
+
+	</div>
+
+	<div x-data="garments" x-init=""  >
+		<button @click="show()">Load garments</button>
+		<ul>
 			<template x-for="garment in garments" >
 				<li x-text="garment.description" ></li>
+				<li x-text="garment.price" ></li>
+				<img :src="`/images/${garment.img}`">
 			</template>
 		</ul>
 	</div>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="index.js"></script>
+    <script src="garments.js"></script>
 </body>
 </html>
