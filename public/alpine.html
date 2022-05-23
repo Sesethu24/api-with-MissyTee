@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Alpine JS</title>
+</head>
+<body>
+    <h2>Missy Tee's clothing shop</h2>
+	<div x-data="garments" x-init=""  >
+		<button @click="show">Load garments</button>
+
+    		<ul>
+			<template x-for="garment in garments" >
+				<li x-text="garment.description" ></li>
+			</template>
+		</ul>
+	</div>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
