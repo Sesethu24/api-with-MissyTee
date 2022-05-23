@@ -100,14 +100,14 @@
 		<button @click="show()">Load garments</button>
 		<ul>
 			<template x-for="garment in garments" >
+				<img :src="`/images/${garment.img}`">
 				<li x-text="garment.description" ></li>
 				<li x-text="garment.price" ></li>
-				<img :src="`/images/${garment.img}`">
 			</template>
 		</ul>
 	</div>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="index.js"></script>
     <script src="garments.js"></script>
+	<script src="/index.js"></script>
 </body>
 </html>
