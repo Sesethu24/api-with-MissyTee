@@ -4,49 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
+	<script src="garments.js"></script>
     <title>Alpine JS</title>
 </head>
 <body>
+	<div class="container" x-data="garments">
     <h2>Missy Tee's clothing shop</h2>
-	<div class="filter" >
+	<div class="filter">
 		<h2>Filter</h2>
-		<div class="genders" >
+		<div class="genders">
 			<label>
-				<input type="radio" name="gender" value="All"> All
-			</label>
-			
-			<label>
-				<input type="radio" name="gender" value="Male"> Male
+				<input @change="filterData()" x-model="genderFilter" type="radio" name="gender" value="All"> All
 			</label>
 
 			<label>
-				<input type="radio" name="gender" value="Female"> Female
+				<input @change="filterData()" x-model="genderFilter" type="radio" name="gender" value="Male"> Male
+			</label>
+
+			<label>
+				<input @change="filterData()" x-model="genderFilter" type="radio" name="gender" value="Female"> Female
 			</label>
 			<label>
-				<input type="radio" name="gender" value="Unisex"> Unisex
+				<input @change="filterData()" x-model="genderFilter" type="radio" name="gender" value="Unisex"> Unisex
 			</label>
 		</div>
-		<div class="seasons" >
-			
-			<label >
-				<input type="radio" name="season" value="All"> All
+		<div class="seasons">
+
+			<label>
+				<input  @change="filterData()" x-model="seasonFilter" type="radio" name="season" value="All"> All
 			</label>
 			<label>
-				<input type="radio" name="season" value="Summer"> Summer
+				<input @change="filterData()" x-model="seasonFilter" type="radio" name="season" value="Summer"> Summer
 			</label>
 			<label>
-				<input type="radio" name="season" value="Winter"> Winter
+				<input @change="filterData()" x-model="seasonFilter" type="radio" name="season" value="Winter"> Winter
 			</label>
 			<label>
-				<input type="radio" name="season" value="All Seasons"> All seasons
+				<input @change="filterData()" x-model="seasonFilter" type="radio" name="season" value="All Seasons"> All seasons
 			</label>
 		</div>
 		<div>
-			Filter by price range: 
-			<input type="range" name="priceRange" max="1000" step="50" class="priceRange" value="0"  >
-			R<span class="showPriceRange" >0</span>.00
+			Filter by price range:
+			<input @change="" type="range" name="priceRange" max="1000" step="50" class="priceRange" value="0">
+			R<span class="showPriceRange">0</span>.00
 		</div>
 	</div>
+	
+	
 
 	<!-- <div class="message hidden" >
 
@@ -94,20 +98,22 @@
 				</div>
 		</div> -->
 
-	</div>
+	
 
-	<div x-data="garments" x-init=""  >
+	<div x-data="garments" x-init="" >
 		<button @click="show()">Load garments</button>
 		<ul>
 			<template x-for="garment in garments" >
+				<div>
 				<img :src="`/images/${garment.img}`">
 				<li x-text="garment.description" ></li>
 				<li x-text="garment.price" ></li>
+				</div>
 			</template>
 		</ul>
 	</div>
+</div>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="garments.js"></script>
-	<script src="/index.js"></script>
+    <script src="/index.js"></script>
 </body>
 </html>

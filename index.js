@@ -19,5 +19,10 @@ const db = pgp(DATABASE_URL);
 
 API(app, db);
 
-app.listen(5001);
+const PORT = process.env.PORT || 5001;
 
+
+
+app.listen(PORT, function() {
+	console.log(`App started on port ${PORT}`)
+});
