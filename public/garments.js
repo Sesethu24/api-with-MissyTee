@@ -4,10 +4,10 @@ document.addEventListener('alpine:init', () => {
         seasonFilter : '',
         genderFilter : '',
         maxPrice: 0,
-        init(){
-            alert('Page loaded')
-            // this.filterData()
-        },
+        // init(){
+            
+        //      this.filterData()
+        // },
         show() {
             fetch('/api/garments')
 			.then(r => r.json())
@@ -19,8 +19,14 @@ document.addEventListener('alpine:init', () => {
             .then(r => r.json())
             .then(results=>{
                 this.garments = results.data  
-                console.log(this.garments); 
             })
+      },
+      filterByPrice() {
+          fetch(`/api/garments/${this.maxPrice}`)
+          .then(r => r.json())
+          .then(result => {
+              this.garments = result.data})
+              
       }
     }))
 })

@@ -6,8 +6,18 @@ module.exports = function (app, db) {
 		});
 	});
 
-	app.get('/api/garments', async function (req, res) {
+	app.get('/api/garments/:price', async function (req, res) {
 
+		const { price } = req.params;
+		let garments = await db.many('select * from garment where price <= $1', [price]);
+		
+	// add some sql queries that filter on gender & season
+		res.json({
+			data: garments
+		})
+	});
+
+	app.get('/api/garments', async function (req, res){
 		const { gender, season } = req.query;
 		let garments = await db.many('select * from garment');
 		if(season) {

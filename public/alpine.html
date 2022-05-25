@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 	<link rel="stylesheet" href="style.css">
 	<script src="garments.js"></script>
     <title>Alpine JS</title>
@@ -45,8 +46,8 @@
 		</div>
 		<div>
 			Filter by price range:
-			<input @change="" type="range" name="priceRange" max="1000" step="50" class="priceRange" value="0">
-			R<span class="showPriceRange">0</span>.00
+			<input @change="filterByPrice()" x-model="maxPrice" type="range" name="priceRange" max="1000" step="50" class="priceRange" value="0">
+			R<span x-text="maxPrice"  class="showPriceRange">0</span>.00
 		</div>
 	</div>
 	
@@ -97,23 +98,18 @@
 					<input type="button" name="action" value="Hide" class="hideAddGarmetBtn" >
 				</div>
 		</div> -->
-
-	
-
-	<div x-data="garments" x-init="" >
-		<button @click="show()">Load garments</button>
-		<ul>
+    <button @click="show">Load garments</button>
+		<div class="gams">
 			<template x-for="garment in garments" >
 				<div>
 				<img :src="`/images/${garment.img}`">
-				<li x-text="garment.description" ></li>
-				<li x-text="garment.price" ></li>
+				<p x-text="garment.description" ></p>
+				<p x-text="garment.price" ></p>
 				</div>
 			</template>
-		</ul>
-	</div>
-</div>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="/index.js"></script>
+		</div>
+   </div>
+   
+    <script src="garments.js"></script>
 </body>
 </html>
