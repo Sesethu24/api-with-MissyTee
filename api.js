@@ -11,7 +11,7 @@ module.exports = function (app, db) {
 		const { price } = req.params;
 		let garments = await db.many('select * from garment where price <= $1', [price]);
 		
-	// add some sql queries that filter on gender & season
+	// add some sql queries that filter on price
 		res.json({
 			data: garments
 		})
