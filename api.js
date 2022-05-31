@@ -93,7 +93,7 @@ module.exports = function (app, db) {
 			const { description, price, img, season, gender } = req.body;
 
 			// insert a new garment in the database
-			 await db.none(`insert into garment( description, price, img, season, gender) values($1,$2,$3,$4,$5) on conflict do nothing`, [ description, price, img, season, gender]);
+			 await db.oneOrNone(`insert into garment( description, price, img, season, gender) values($1,$2,$3,$4,$5) on conflict do nothing`, [ description, price, img, season, gender]);
 		
 			res.json({
 				status: 'success',
@@ -110,7 +110,7 @@ module.exports = function (app, db) {
 	});
 
 	app.get('/api/garments/grouped', async function (req, res) {
-		const result = await db.many(`select count(*), gender FROM garment GROUP BY gender ORDER BY gender desc `);
+		const result = await db.manyOrNone(`select count(*), gender FROM garment GROUP BY gender ORDER BY gender desc `);
 		
 		res.json({
 			data: result
@@ -118,12 +118,12 @@ module.exports = function (app, db) {
 	});
 
 
-	app.delete('/api/garments', async function (req, res) {
+	app.delete('/api/garments/:id', async function (req, res) {
 
 		try {
-			const { gender } = req.query;
+			const { id } = req.params;
 			// delete the garments with the specified gender
-
+          await db.oneOrNone("delete from garments where id=$1",[id])
 			res.json({
 				status: 'success'
 			})
